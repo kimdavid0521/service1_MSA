@@ -24,4 +24,11 @@ public class DiscoveryController {
     public String resttemplate(@PathVariable("id") String id) {
         return discoveryService.resttemplate(id);
     }
+
+    // ribbon 적용
+    @GetMapping("/ribbon/{id}")
+    public String ribbon(@PathVariable("id") String id) {
+        return discoveryService.ribbon(id);
+    }
+
 }

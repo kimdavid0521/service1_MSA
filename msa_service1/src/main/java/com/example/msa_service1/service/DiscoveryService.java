@@ -2,6 +2,7 @@ package com.example.msa_service1.service;
 
 
 import com.example.msa_service1.http.RestTemplateClientCommunicator;
+import com.example.msa_service1.http.RibbonClientCommunicator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -21,6 +22,9 @@ public class DiscoveryService {
     @Autowired
     RestTemplateClientCommunicator restTemplateClientCommunicator;
 
+    @Autowired
+    RibbonClientCommunicator ribbonClientCommunicator;
+
     public List getServices() {
         List<String> services = new ArrayList<String>();
 
@@ -38,5 +42,10 @@ public class DiscoveryService {
         return restTemplateClientCommunicator.getName(id);
     }
 
+    // ribbon 적용
+    public String ribbon(String id) {
+        log.info("ribbonClientCommunicator로 통신");
+        return ribbonClientCommunicator.getName(id);
+    }
 }
 
