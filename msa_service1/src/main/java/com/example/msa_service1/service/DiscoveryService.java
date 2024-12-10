@@ -1,6 +1,7 @@
 package com.example.msa_service1.service;
 
 
+import com.example.msa_service1.http.FeignClientCommunicator;
 import com.example.msa_service1.http.RestTemplateClientCommunicator;
 import com.example.msa_service1.http.RibbonClientCommunicator;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,9 @@ public class DiscoveryService {
     @Autowired
     RibbonClientCommunicator ribbonClientCommunicator;
 
+    @Autowired
+    FeignClientCommunicator feignClientCommunicator;
+
     public List getServices() {
         List<String> services = new ArrayList<String>();
 
@@ -46,6 +50,12 @@ public class DiscoveryService {
     public String ribbon(String id) {
         log.info("ribbonClientCommunicator로 통신");
         return ribbonClientCommunicator.getName(id);
+    }
+
+    //feign 적용
+    public String feign(String id) {
+        log.info("feignClientCommunicator로 통신");
+        return feignClientCommunicator.getName(id);
     }
 }
 

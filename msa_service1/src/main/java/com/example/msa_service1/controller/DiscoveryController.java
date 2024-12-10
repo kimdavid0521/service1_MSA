@@ -31,4 +31,10 @@ public class DiscoveryController {
         return discoveryService.ribbon(id);
     }
 
+    //feign 적용
+    @GetMapping("/feign/{id}")
+    public String feign(@PathVariable("id") String id) {
+        return discoveryService.feign(id);
+    }
+
 }
