@@ -5,6 +5,12 @@ spring:
   application:
     name: service1
 
+  #   spring dataSource를 비활성화하고 자동 구성을 막기 위한 옵션 추가
+  datasource:
+    driver-class-name: none
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 eureka:
   instance:
     prefer-ip-address: true  #유레카 서버에 애플리케이션 이름에 매핑되는 호스트명이 기본적으로 동록되게 (호스트명이 아닌 ip주소를 대신 등록하겠다는 것)
@@ -13,6 +19,8 @@ eureka:
     fetch-registry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+    registry-fetch-interval-seconds: 5 # eureka에게 서비스 정보를 가져오는 주기
+    disable-delta: true # eureka에게 서비스 정보를 가져올때 변경된 내용만 가져옵니다. ( false로 하면 전체를 가져오기에 대역폭 낭비입니다. )
 
 management:
   endpoints:
